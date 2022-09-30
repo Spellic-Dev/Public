@@ -1,1 +1,2 @@
 Images of Items for Steam Asset Server
+Images have a 50px area surrounding.
