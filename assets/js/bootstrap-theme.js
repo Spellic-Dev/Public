@@ -63,45 +63,67 @@
       var scrollDistance = window.pageYOffset;
 
       if (scrollDistance > 100) {
-        scrollToTop.style.display = 'block';
+        scrollToTop.style.right = '15px';
       } else {
-        scrollToTop.style.display = 'none';
+        scrollToTop.style.right = '-100px';
       }
     });
   }
+
+  function initParallax() {
+
+    if (!('requestAnimationFrame' in window)) return;
+    if (/Mobile|Android/.test(navigator.userAgent)) return;
+
+    var parallaxItems = document.querySelectorAll('[data-bss-parallax]');
+
+    if (!parallaxItems.length) return;
+
+    var defaultSpeed = 0.5;
+    var visible = [];
+    var scheduled;
+
+    window.addEventListener('scroll', scroll);
+    window.addEventListener('resize', scroll);
+
+    scroll();
+
+    function scroll() {
+
+      visible.length = 0;
+
+      for (var i = 0; i < parallaxItems.length; i++) {
+        var rect = parallaxItems[i].getBoundingClientRect();
+        var speed = parseFloat(parallaxItems[i].getAttribute('data-bss-parallax-speed'), 10) || defaultSpeed;
+
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          visible.push({
+            speed: speed,
+            node: parallaxItems[i]
+          });
+        }
+
+      }
+
+      cancelAnimationFrame(scheduled);
+
+      if (visible.length) {
+        scheduled = requestAnimationFrame(update);
+      }
+
+    }
+
+    function update() {
+
+      for (var i = 0; i < visible.length; i++) {
+        var node = visible[i].node;
+        var speed = visible[i].speed;
+
+        node.style.transform = 'translate3d(0, ' + (-window.scrollY * speed) + 'px, 0)';
+      }
+
+    }
+  }
+
+  initParallax();
 })(); // End of use strict
-
-// Disable Google Maps scrolling
-// See http://stackoverflow.com/a/25904582/1607849
-// Disable scroll zooming and bind back the click event
-var onMapMouseleaveHandler = function(e) {
-  this.addEventListener('click', onMapClickHandler);
-  this.removeEventListener('mouseleave', onMapMouseleaveHandler);
-
-  var iframe = this.querySelector('iframe'); 
-  
-  if (iframe) {
-    iframe.style.pointerEvents = 'none';
-  }
-}
-
-var onMapClickHandler = function(e) {
-  // Disable the click handler until the user leaves the map area
-  this.removeEventListener('click', onMapClickHandler);
-  // Handle the mouse leave event
-  this.addEventListener('mouseleave', onMapMouseleaveHandler);
-
-  // Enable scrolling zoom
-  var iframe = this.querySelector('iframe'); 
-  
-  if (iframe) {
-    iframe.style.pointerEvents = 'auto';
-  }
-}
-
-var maps = document.querySelectorAll('.map');
-
-for (var map of maps) {
-  // Enable map zooming with mouse scroll when the user clicks the map
-  map.addEventListener('click', onMapClickHandler);
-}

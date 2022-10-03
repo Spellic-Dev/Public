@@ -6,3 +6,13 @@ img {
   right: 265px;
 }
 
+.menu-toggle, .scroll-to-top {
+  transition-property: all!important;
+  transition-duration: 250ms;
+}
+
+.scroll-to-top {
+  display: block;
+  right: -100px;
+}
+
