@@ -55,7 +55,13 @@
                   fetch(URL, {
                       method: 'GET'
                   })
-                  .then(async response => await response.text())
+                  .then(async response => {
+                    if(response.ok) {
+                      return await response.text();
+                    } else {
+                      throw await response.text();
+                    }
+                  })
                   .then(data => {
                       console.log(data);
                       icon.classList.remove("icon-clock");
