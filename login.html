@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" style="--bs-primary: #91678c;--bs-primary-rgb: 145,103,140;--bs-secondary: #514d75;--bs-secondary-rgb: 81,77,117;--bs-body-bg: #3c3958;--bs-body-color: #ffffff;" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Spellic | Wishlist now!</title>
+    <meta name="description" content="Spellic is an arcade action wizard shooter. With your keyboard, cast spells like fireballs to defeat your enemies or help your allies in various multiplayer battles.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:title" content="Spellic | Wishlist now!">
+    <meta property="og:description" content="Spellic is an arcade action wizard shooter. With your keyboard, cast spells like fireballs to defeat your enemies or help your allies in various multiplayer battles.">
+    <meta property="og:image" content="https://spellic.stefftek.de/assets/img/opengraph and favicon/capsule.png">
+    <meta name="twitter:image" content="https://spellic.stefftek.de/assets/img/opengraph and favicon/capsule.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/opengraph%20and%20favicon/Logo_x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/opengraph%20and%20favicon/Logo_x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/opengraph%20and%20favicon/Logo_x96.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/opengraph%20and%20favicon/Logo_x96.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/opengraph%20and%20favicon/Logo_x96.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/monogram.css">
+    <link rel="stylesheet" href="assets/css/Source%20Sans%20Pro.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/aos.min.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/gay.css">
+</head>
+
+<body id="page-top">
+    <header class="d-flex masthead" style="background: url(&quot;assets/img/Spellic_X_Twitch_.png&quot;) center / auto no-repeat, url(&quot;assets/img/header.jpg&quot;) center / cover no-repeat;">
+        <div class="container my-auto text-center" data-bss-parallax-speed="0.4">
+            <div style="background: #000000c2;padding: 16px;border-radius: 5px;">
+                <h1><i class="icon-clock" id="head-icon" style="font-size: 69px;"></i>&nbsp;<span id="head">Wait...</span></h1><span id="subhead" style="font-size: 32px;">Spellic is logging you in...</span><script>
+  let icon = document.getElementById("head-icon");
+  let head = document.getElementById("head");
+  let subhead = document.getElementById("subhead");
+  // Get the query string from the URL
+  const hash = window.location.hash;
+  const query = hash.substring(1);
+  const vars = query.split('&');
+  const query_string = {};
+  // Decode every key-value pair in the query string
+  for (let i = 0; i < vars.length; i++) {
+      const pair = vars[i].split('=');
+      const key = decodeURIComponent(pair[0]);
+      const value = decodeURIComponent(pair[1]);
+      query_string[key] = value;
+  }
+  const state = query_string['state'];
+  const token = query_string['access_token'];
+  // Send the token to the local web server with fetch
+  const URL = 'http://localhost:42069/login?state=' + state + '&access_token=' + token;
+  fetch(URL, {
+      method: 'GET'
+  })
+  .then(response => response.text())
+  .then(data => {
+      console.log(data);
+      icon.classList.remove("icon-clock");
+      icon.classList.add("icon-check");
+      head.innerHTML = "Success!";
+      subhead.innerHTML = "The window should close in ten seconds...";
+      // Close the window after 10 seconds
+      setTimeout(function() {
+          window.close();
+      }, 10000);
+  })
+  .catch(error => {
+      console.error(error);
+      icon.classList.remove("icon-clock");
+      icon.classList.add("icon-close");
+      head.innerHTML = "Error";
+      subhead.innerHTML = error;
+  });
+</script>
+            </div>
+        </div>
+    </header>
+    <footer class="footer text-center">
+        <div class="container">
+            <ul class="list-inline mb-5">
+                <li class="list-inline-item" data-bss-disabled-mobile="true" data-aos="fade-down" data-aos-duration="500" data-aos-delay="250" data-aos-once="true">&nbsp;<a class="link-light social-link rounded-circle" href="https://www.youtube.com/watch?v=GMcdFSyeVv4&amp;list=PLKaqNHZh3_oqdneCVFY42XyOrhI9cjixY"><i class="icon-social-youtube"></i></a></li>
+                <li class="list-inline-item" data-bss-disabled-mobile="true" data-aos="fade-down" data-aos-duration="500" data-aos-delay="450" data-aos-once="true">&nbsp;<a class="link-light social-link rounded-circle" href="https://twitter.com/unHoly_ger"><i class="icon-social-twitter"></i></a></li>
+                <li class="list-inline-item" data-bss-disabled-mobile="true" data-aos="fade-down" data-aos-duration="250" data-aos-delay="650" data-aos-once="true">&nbsp;<a class="link-light social-link rounded-circle" href="https://github.com/Spellic-Dev"><i class="icon-social-github"></i></a></li>
+            </ul>
+            <p data-bss-disabled-mobile="true" data-aos="zoom-in-down" data-aos-duration="750" data-aos-delay="750" data-aos-once="true" class="mb-0 small">Website Copyright &nbsp;© SteffTek 2023 | <a href="https://stefftek.de/imprint">Imprint</a><br>Site built with 💚🦊💙 by <a href="https://ryzetech.live">ryzetech.live</a><br><br>©2022 Valve Corporation. Steam and the Steam logo are trademarks and/or registered trademarks of Valve Corporation in the U.S. and/or other countries.</p>
+        </div><a class="js-scroll-trigger scroll-to-top rounded" href="#page-top" style="z-index: 3;"><i class="fa fa-angle-up"></i></a>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/aos.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/bootstrap-theme.js"></script>
+</body>
+
+</html>
