@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html data-bs-theme="light" style="--bs-primary: #91678c;--bs-primary-rgb: 145,103,140;--bs-secondary: #514d75;--bs-secondary-rgb: 81,77,117;--bs-body-bg: #3c3958;--bs-body-color: #ffffff;" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -32,7 +31,7 @@
         <div class="container my-auto text-center" data-bss-parallax-speed="0.4">
             <div style="background: #000000c2;padding: 16px;border-radius: 5px;">
                 <h1><i class="icon-clock" id="head-icon" style="font-size: 69px;"></i>&nbsp;<span id="head">Wait...</span></h1><span id="subhead" style="font-size: 32px;">Spellic is logging you in...</span>
-                <script>
+                <script async>
                   let icon = document.getElementById("head-icon");
                   let head = document.getElementById("head");
                   let subhead = document.getElementById("subhead");
@@ -52,17 +51,10 @@
                   const token = query_string['access_token'];
                   // Send the token to the local web server with fetch
                   const URL = 'http://localhost:42069/login?state=' + state + '&access_token=' + token;
-                  fetch(URL, {
+                  await fetch(URL, {
                       method: 'GET'
                   })
-                  .catch(error => {
-                      console.error(error);
-                      icon.classList.remove("icon-clock");
-                      icon.classList.add("icon-close");
-                      head.innerHTML = "Error";
-                      subhead.innerHTML = error;
-                  })
-                  .then(response => response.text())
+                  .then(async response => await response.text())
                   .then(data => {
                       console.log(data);
                       icon.classList.remove("icon-clock");
@@ -73,6 +65,13 @@
                       setTimeout(function() {
                           window.close();
                       }, 10000);
+                  })
+                  .catch(error => {
+                      console.error(error);
+                      icon.classList.remove("icon-clock");
+                      icon.classList.add("icon-close");
+                      head.innerHTML = "Error";
+                      subhead.innerHTML = error;
                   });
                 </script>
             </div>
@@ -94,5 +93,4 @@
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/bootstrap-theme.js"></script>
 </body>
-
 </html>
