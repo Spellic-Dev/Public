@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html data-bs-theme="light" style="--bs-primary: #91678c;--bs-primary-rgb: 145,103,140;--bs-secondary: #514d75;--bs-secondary-rgb: 81,77,117;--bs-body-bg: #3c3958;--bs-body-color: #ffffff;" lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -51,7 +52,7 @@
                   const token = query_string['access_token'];
                   // Send the token to the local web server with fetch
                   const URL = 'http://localhost:42069/login?state=' + state + '&access_token=' + token;
-                  await fetch(URL, {
+                  fetch(URL, {
                       method: 'GET'
                   })
                   .then(async response => await response.text())
@@ -93,4 +94,5 @@
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/bootstrap-theme.js"></script>
 </body>
+
 </html>
