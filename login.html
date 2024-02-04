@@ -32,55 +32,6 @@
         <div class="container my-auto text-center" data-bss-parallax-speed="0.4">
             <div style="background: #000000c2;padding: 16px;border-radius: 5px;">
                 <h1><i class="icon-clock" id="head-icon" style="font-size: 69px;"></i>&nbsp;<span id="head">Wait...</span></h1><span id="subhead" style="font-size: 32px;">Spellic is logging you in...</span>
-                <script async>
-                  let icon = document.getElementById("head-icon");
-                  let head = document.getElementById("head");
-                  let subhead = document.getElementById("subhead");
-                  // Get the query string from the URL
-                  const hash = window.location.hash;
-                  const query = hash.substring(1);
-                  const vars = query.split('&');
-                  const query_string = {};
-                  // Decode every key-value pair in the query string
-                  for (let i = 0; i < vars.length; i++) {
-                      const pair = vars[i].split('=');
-                      const key = decodeURIComponent(pair[0]);
-                      const value = decodeURIComponent(pair[1]);
-                      query_string[key] = value;
-                  }
-                  const state = query_string['state'];
-                  const token = query_string['access_token'];
-                  // Send the token to the local web server with fetch
-                  const URL = 'http://localhost:42069/login?state=' + state + '&access_token=' + token;
-                  fetch(URL, {
-                      method: 'GET'
-                  })
-                  .then(async response => {
-                    if(response.ok) {
-                      return await response.text();
-                    } else {
-                      throw await response.text();
-                    }
-                  })
-                  .then(data => {
-                      console.log(data);
-                      icon.classList.remove("icon-clock");
-                      icon.classList.add("icon-check");
-                      head.innerHTML = "Success!";
-                      subhead.innerHTML = "The window should close in ten seconds...";
-                      // Close the window after 10 seconds
-                      setTimeout(function() {
-                          window.close();
-                      }, 10000);
-                  })
-                  .catch(error => {
-                      console.error(error);
-                      icon.classList.remove("icon-clock");
-                      icon.classList.add("icon-close");
-                      head.innerHTML = "Error";
-                      subhead.innerHTML = error;
-                  });
-                </script>
             </div>
         </div>
     </header>
@@ -91,7 +42,7 @@
                 <li class="list-inline-item" data-bss-disabled-mobile="true" data-aos="fade-down" data-aos-duration="500" data-aos-delay="450" data-aos-once="true">&nbsp;<a class="link-light social-link rounded-circle" href="https://twitter.com/unHoly_ger"><i class="icon-social-twitter"></i></a></li>
                 <li class="list-inline-item" data-bss-disabled-mobile="true" data-aos="fade-down" data-aos-duration="250" data-aos-delay="650" data-aos-once="true">&nbsp;<a class="link-light social-link rounded-circle" href="https://github.com/Spellic-Dev"><i class="icon-social-github"></i></a></li>
             </ul>
-            <p data-bss-disabled-mobile="true" data-aos="zoom-in-down" data-aos-duration="750" data-aos-delay="750" data-aos-once="true" class="mb-0 small">Website Copyright &nbsp;© SteffTek 2023 | <a href="https://stefftek.de/imprint">Imprint</a><br>Site built with 💚🦊💙 by <a href="https://ryzetech.live">ryzetech.live</a><br><br>©2022 Valve Corporation. Steam and the Steam logo are trademarks and/or registered trademarks of Valve Corporation in the U.S. and/or other countries.</p>
+            <p data-bss-disabled-mobile="true" data-aos="zoom-in-down" data-aos-duration="750" data-aos-delay="750" data-aos-once="true" class="mb-0 small">Website Copyright &nbsp;© SteffTek <span class="copyrightYear">202x</span>&nbsp;| <a href="https://stefftek.de/imprint">Imprint</a><br>Site built with 💚🦊💙 by <a href="https://finnley.dev">finnley.dev</a><br><br>©<span class="copyrightYear">202x</span> Valve Corporation. Steam and the Steam logo are trademarks and/or registered trademarks of Valve Corporation in the U.S. and/or other countries.</p>
         </div><a class="js-scroll-trigger scroll-to-top rounded" href="#page-top" style="z-index: 3;"><i class="fa fa-angle-up"></i></a>
     </footer>
     <script src="assets/js/jquery.min.js"></script>
@@ -99,6 +50,7 @@
     <script src="assets/js/aos.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/bootstrap-theme.js"></script>
+    <script src="assets/js/login.js"></script>
 </body>
 
 </html>

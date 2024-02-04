@@ -126,4 +126,9 @@
   }
 
   initParallax();
+
+  const copyrightSpans = document.getElementsByClassName("copyrightYear");
+  for (let sp of copyrightSpans) {
+    sp.innerHTML = new Date().getFullYear();
+  }
 })(); // End of use strict
